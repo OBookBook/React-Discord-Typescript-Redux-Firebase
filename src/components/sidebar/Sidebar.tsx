@@ -1,5 +1,6 @@
 import "./Sidebar.scss";
-import { auth } from "../../firebase";
+import { useEffect } from "react";
+import { auth, db } from "../../firebase";
 import SidebarChannel from "./SidebarChannel";
 import AddIcon from "@mui/icons-material/Add";
 import MicIcon from "@mui/icons-material/Mic";
@@ -7,9 +8,21 @@ import { useAppSelector } from "../../app/hooks";
 import HeadsetIcon from "@mui/icons-material/Headset";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import { collection, onSnapshot, query } from "firebase/firestore";
 
 const Sidebar = () => {
   const user = useAppSelector((state) => state.user);
+  // https://firebase.google.com/docs/firestore/query-data/listen?hl=ja
+  const q = query(collection(db, "channels"));
+
+  useEffect(() => {
+    onSnapshot(q, (quetySnapshot) => {
+      const channelResults = [];
+      quetySnapshot.docs.forEach((doc) => {
+        console.log(doc);
+      });
+    });
+  }, []);
 
   return (
     <aside className="sidebar">
