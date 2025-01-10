@@ -43,3 +43,23 @@
     padding: 20px;
   }
 }
+
+.sidebar-channels {
+  padding: 19px;
+
+  &__header {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+}
