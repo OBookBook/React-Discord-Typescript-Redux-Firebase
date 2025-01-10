@@ -9,7 +9,6 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 
 function Chat() {
   const channelName = useAppSelector((state) => state.channel.channelName);
-  console.log(channelName);
 
   return (
     <div className="chat">
