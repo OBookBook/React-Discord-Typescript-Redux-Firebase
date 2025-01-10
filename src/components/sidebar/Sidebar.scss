@@ -1,0 +1,105 @@
+.sidebar {
+  display: flex;
+  flex: 0.3; // 左30% 右40%
+  height: 100vh;
+
+  &__left {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #1a1c20;
+    padding: 7px 15px;
+  }
+
+  &__icon {
+    width: 65px;
+    height: 65px;
+    background-color: #33363d;
+    border-radius: 9999px;
+    margin-bottom: 10px;
+    position: relative;
+    margin-top: 7px;
+
+    img {
+      width: 50px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+
+  &__right {
+    background-color: #2b2d33;
+    width: 300px;
+    position: relative;
+    flex-grow: 1;
+  }
+
+  &__top {
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+  }
+}
+
+.sidebar-channels {
+  padding: 19px;
+
+  &__header {
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5px;
+  }
+
+  &__content {
+    display: flex;
+  }
+
+  &__icon {
+    cursor: pointer;
+  }
+
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    width: 93%;
+    padding-bottom: 10px;
+    border-top: 1px solid #686a6e;
+    margin-left: -3px;
+  }
+
+  &__account {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    img {
+      width: 55px;
+      border-radius: 50%;
+    }
+  }
+
+  &__acountName {
+    margin-left: 10px;
+    h4 {
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+  span {
+    color: #686a6e;
+  }
+
+  &__voice {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+    gap: 5px;
+    color: #686a6e;
+  }
+}
