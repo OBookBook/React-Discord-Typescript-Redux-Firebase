@@ -1,4 +1,5 @@
 import "./Sidebar.scss";
+import SidebarChannel from "./SidebarChannel";
 import AddIcon from "@mui/icons-material/Add";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
@@ -25,6 +26,12 @@ const Sidebar = () => {
             <h4>プログラミングチャンネル</h4>
             <div className="sidebar-channels__content"></div>
             <AddIcon className="sidebar-channels__icon" />
+          </div>
+
+          <div className="sidebar-channels__list">
+            <SidebarChannel />
+            <SidebarChannel />
+            <SidebarChannel />
           </div>
         </div>
       </div>
