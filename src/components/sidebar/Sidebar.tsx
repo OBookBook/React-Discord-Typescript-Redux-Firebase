@@ -1,5 +1,11 @@
+import {
+  collection,
+  DocumentData,
+  onSnapshot,
+  query,
+} from "firebase/firestore";
 import "./Sidebar.scss";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { auth, db } from "../../firebase";
 import SidebarChannel from "./SidebarChannel";
 import AddIcon from "@mui/icons-material/Add";
@@ -8,19 +14,27 @@ import { useAppSelector } from "../../app/hooks";
 import HeadsetIcon from "@mui/icons-material/Headset";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { collection, onSnapshot, query } from "firebase/firestore";
+
+interface Channel {
+  id: string;
+  channel: DocumentData;
+}
 
 const Sidebar = () => {
   const user = useAppSelector((state) => state.user);
-  // https://firebase.google.com/docs/firestore/query-data/listen?hl=ja
-  const q = query(collection(db, "channels"));
+  const q = query(collection(db, "channels")); // https://firebase.google.com/docs/firestore/query-data/listen?hl=ja
+  const [channels, setChannels] = useState<Channel[]>([]);
 
   useEffect(() => {
     onSnapshot(q, (quetySnapshot) => {
-      const channelResults = [];
+      const channelResults: Channel[] = [];
       quetySnapshot.docs.forEach((doc) => {
-        console.log(doc);
+        channelResults.push({
+          id: doc.id,
+          channel: doc.data(),
+        });
       });
+      setChannels(channelResults);
     });
   }, []);
 
@@ -49,9 +63,13 @@ const Sidebar = () => {
           </div>
 
           <div className="sidebar-channels__list">
-            <SidebarChannel />
-            <SidebarChannel />
-            <SidebarChannel />
+            {channels.map((channel) => (
+              <SidebarChannel
+                id={channel.id}
+                channel={channel}
+                key={channel.id}
+              />
+            ))}
           </div>
 
           <div className="sidebar-channels__footer">
