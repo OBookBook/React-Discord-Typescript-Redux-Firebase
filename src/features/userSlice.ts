@@ -1,10 +1,14 @@
+import { InitialUserState } from "../types";
 import { createSlice } from "@reduxjs/toolkit";
+
+const initialState: InitialUserState = {
+  user: null,
+};
 
 export const userSlice = createSlice({
   name: "user",
-  initialState: {
-    user: null,
-  },
+  initialState, // ← プロパティ名と変数名が同じ場合、省略が可能 ↓
+  //   initialState: initialState,
   reducers: {
     login: (state, action) => {
       state.user = action.payload;
