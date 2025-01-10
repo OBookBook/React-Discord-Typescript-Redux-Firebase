@@ -3,6 +3,6 @@ export interface InitialUserState {
     uid: string;
     photo: string;
     email: string;
-    desplayName: string;
+    displayName: string;
   };
 }
