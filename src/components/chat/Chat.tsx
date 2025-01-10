@@ -1,5 +1,6 @@
 import "./Chat.scss";
 import ChatHeader from "./ChatHeader";
+import ChatMessage from "./ChatMessage";
 import GifIcon from "@mui/icons-material/Gif";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
@@ -9,7 +10,12 @@ function Chat() {
   return (
     <div className="chat">
       <ChatHeader />
-      <div className="chat__message"></div>
+      <div className="chat__message">
+        <ChatMessage />
+        <ChatMessage />
+        <ChatMessage />
+        <ChatMessage />
+      </div>
       <div className="chat__input">
         <AddCircleIcon />
         <form>
