@@ -1,8 +1,7 @@
 .sidebar {
   display: flex;
-  flex: 0.35; // 左35% 右65%
+  flex: 0.3; // 左30% 右40%
   height: 100vh;
-  background-color: #33363d; // TODO: after move
 
   &__left {
     display: flex;
@@ -34,6 +33,7 @@
     background-color: #2b2d33;
     width: 300px;
     position: relative;
+    flex-grow: 1;
   }
 
   &__top {
