@@ -1,9 +1,10 @@
 import "./Chat.scss";
+import ChatHeader from "./ChatHeader";
 
 function Chat() {
   return (
     <div className="chat">
-      <div className="chat__header"></div>
+      <ChatHeader />
       <div className="chat__message"></div>
       <div className="chat__input"></div>
     </div>
