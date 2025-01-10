@@ -33,6 +33,7 @@
   &__right {
     background-color: #2b2d33;
     width: 300px;
+    position: relative;
   }
 
   &__top {
@@ -61,5 +62,44 @@
 
   &__icon {
     cursor: pointer;
+  }
+
+  &__footer {
+    position: absolute;
+    bottom: 0;
+    left: 14px;
+    width: 93%;
+    padding-bottom: 10px;
+    border-top: 1px solid #686a6e;
+    margin-left: -3px;
+  }
+
+  &__account {
+    display: flex;
+    align-items: center;
+    padding-top: 10px;
+    img {
+      width: 55px;
+      border-radius: 50%;
+    }
+  }
+
+  &__acountName {
+    margin-left: 10px;
+    h4 {
+      color: #fff;
+      font-weight: 500;
+    }
+  }
+  span {
+    color: #686a6e;
+  }
+
+  &__voice {
+    display: flex;
+    align-items: center;
+    margin-left: 60px;
+    gap: 5px;
+    color: #686a6e;
   }
 }

@@ -38,7 +38,11 @@ const Sidebar = () => {
 
           <div className="sidebar-channels__footer">
             <div className="sidebar-channels__account">
-              <img src="./../../../public/icon.jpg" alt="" />
+              <img
+                src="./../../../public/icon.jpg"
+                alt=""
+                className="sidebar-channels__myIcon"
+              />
               <div className="sidebar-channels__acountName">
                 <h4>Naobe</h4>
                 <span>#6342636</span>
