@@ -1,8 +1,10 @@
 import "./Sidebar.scss";
 import SidebarChannel from "./SidebarChannel";
 import AddIcon from "@mui/icons-material/Add";
+import MicIcon from "@mui/icons-material/Mic";
+import HeadsetIcon from "@mui/icons-material/Headset";
+import SettingsIcon from "@mui/icons-material/Settings";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-
 const Sidebar = () => {
   return (
     <aside className="sidebar">
@@ -32,6 +34,22 @@ const Sidebar = () => {
             <SidebarChannel />
             <SidebarChannel />
             <SidebarChannel />
+          </div>
+
+          <div className="sidebar-channels__footer">
+            <div className="sidebar-channels__account">
+              <img src="./../../../public/icon.jpg" alt="" />
+              <div className="sidebar-channels__acountName">
+                <h4>Naobe</h4>
+                <span>#6342636</span>
+              </div>
+
+              <div className="sidebar-channels__voice">
+                <MicIcon />
+                <HeadsetIcon />
+                <SettingsIcon />
+              </div>
+            </div>
           </div>
         </div>
       </div>
