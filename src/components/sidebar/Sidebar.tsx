@@ -5,9 +5,9 @@ import AddIcon from "@mui/icons-material/Add";
 import MicIcon from "@mui/icons-material/Mic";
 import { useAppSelector } from "../../app/hooks";
 import HeadsetIcon from "@mui/icons-material/Headset";
+import useCollection from "../../hooks/useCollection";
 import SettingsIcon from "@mui/icons-material/Settings";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import useCollection from "../../hooks/useCollection";
 
 const Sidebar = () => {
   const user = useAppSelector((state) => state.user);
