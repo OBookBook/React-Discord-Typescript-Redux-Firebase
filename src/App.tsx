@@ -3,8 +3,10 @@ import { auth } from "./firebase";
 import { useEffect } from "react";
 import Chat from "./components/chat/Chat";
 import Login from "./components/login/Login";
+import ErrorFallback from "./utils/ErrorFallBack";
 import Sidebar from "./components/sidebar/Sidebar";
 import { login, logout } from "./features/userSlice";
+import { ErrorBoundary } from "react-error-boundary";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 
 function App() {
@@ -33,7 +35,9 @@ function App() {
       <div className="App">
         {user ? (
           <>
-            <Sidebar />
+            <ErrorBoundary FallbackComponent={ErrorFallback}>
+              <Sidebar />
+            </ErrorBoundary>
             <Chat />
           </>
         ) : (
