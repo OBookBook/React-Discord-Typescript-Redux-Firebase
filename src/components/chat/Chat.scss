@@ -3,6 +3,11 @@
   flex-direction: column;
   flex-grow: 1;
   background-color: #33363d;
+  height: 100vh;
+
+  &__message {
+    overflow-y: scroll;
+  }
 
   &__input {
     display: flex;
