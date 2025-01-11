@@ -13,7 +13,6 @@ import { db } from "../../firebase";
 import ChatHeader from "./ChatHeader";
 import ChatMessage from "./ChatMessage";
 import GifIcon from "@mui/icons-material/Gif";
-import { InitialUserState } from "../../types";
 import { useAppSelector } from "../../app/hooks";
 import AddCircleIcon from "@mui/icons-material/AddCircle";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
@@ -22,7 +21,12 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 interface Messages {
   timestamp: Timestamp;
   message: string;
-  user: InitialUserState;
+  user: {
+    uid: string;
+    photo: string;
+    email: string;
+    displayName: string;
+  };
 }
 
 function Chat() {
@@ -43,19 +47,20 @@ function Chat() {
     onSnapshot(colletionRef, (snapshot) => {
       let results: Messages[] = [];
       snapshot.docs.forEach((doc) => {
-        results.push({
-          timestamp: doc.data().timestamp,
-          message: doc.data().message,
-          user: doc.data().user,
-        });
+        const data = doc.data();
+        if (data.timestamp) {
+          results.push({
+            timestamp: data.timestamp,
+            message: data.message,
+            user: data.user,
+          });
+        }
       });
       setMessages(results);
     });
   }, [channelId]);
 
-  const sendMessage = async (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const sendMessage = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const collectionRef: CollectionReference<DocumentData> = collection(
       db,
@@ -75,10 +80,14 @@ function Chat() {
     <div className="chat">
       <ChatHeader channelName={channelName} />
       <div className="chat__message">
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
-        <ChatMessage />
+        {messages.map((message, index) => (
+          <ChatMessage
+            key={index}
+            message={message.message}
+            timestamp={message.timestamp}
+            user={message.user}
+          />
+        ))}
       </div>
       <div className="chat__input">
         <AddCircleIcon />

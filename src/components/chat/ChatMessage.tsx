@@ -1,16 +1,32 @@
 import "./ChatMessage.scss";
-import FaceIcon from "@mui/icons-material/Face";
+import { Avatar } from "@mui/material";
+import { Timestamp } from "firebase/firestore";
 
-const ChatMessage = () => {
+interface ChatMessageProps {
+  message: string;
+  timestamp: Timestamp;
+  user: {
+    uid: string;
+    photo: string;
+    email: string;
+    displayName: string;
+  };
+}
+
+const ChatMessage = ({ message, timestamp, user }: ChatMessageProps) => {
+  const formattedTimestamp = timestamp
+    ? new Date(timestamp.toDate()).toLocaleString()
+    : "日時不明";
+
   return (
     <div className="message">
-      <FaceIcon />
+      <Avatar src={user?.photo} />
       <div className="message__info">
         <h4>
-          naobe
-          <span className="message__timestamp">2025/1/10</span>
+          {user?.displayName}
+          <span className="message__timestamp">{formattedTimestamp}</span>
         </h4>
-        <p>content.....</p>
+        <p>{message}</p>
       </div>
     </div>
   );
