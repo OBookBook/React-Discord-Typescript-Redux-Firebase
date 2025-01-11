@@ -1,5 +1,13 @@
 import "./Chat.scss";
+import {
+  addDoc,
+  collection,
+  DocumentData,
+  CollectionReference,
+  serverTimestamp,
+} from "firebase/firestore";
 import { useState } from "react";
+import { db } from "../../firebase";
 import ChatHeader from "./ChatHeader";
 import ChatMessage from "./ChatMessage";
 import GifIcon from "@mui/icons-material/Gif";
@@ -10,10 +18,26 @@ import EmojiEmotionsIcon from "@mui/icons-material/EmojiEmotions";
 
 function Chat() {
   const [inputText, setInputText] = useState<string>("");
+  const user = useAppSelector((state) => state.user.user);
+  const channelId = useAppSelector((state) => state.channel.channelId);
   const channelName = useAppSelector((state) => state.channel.channelName);
 
-  const sendMessage = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  const sendMessage = async (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
     e.preventDefault();
+    const collectionRef: CollectionReference<DocumentData> = collection(
+      db,
+      "channels",
+      String(channelId),
+      "messages"
+    );
+
+    await addDoc(collectionRef, {
+      message: inputText,
+      timestamp: serverTimestamp(),
+      user: user,
+    });
   };
 
   return (
