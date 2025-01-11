@@ -6,13 +6,17 @@ import PeopleIcon from "@mui/icons-material/People";
 import PushPinIcon from "@mui/icons-material/PushPin";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 
-const ChatHeader = () => {
+interface ChatHeaderProps {
+  channelName: string | null;
+}
+
+const ChatHeader = ({ channelName }: ChatHeaderProps) => {
   return (
     <div className="chat-header">
       <div className="chat-header__left">
         <h3>
           <span className="chat-header__hash">#</span>
-          Next.js
+          {channelName}
         </h3>
       </div>
       <div className="chat-header__right">

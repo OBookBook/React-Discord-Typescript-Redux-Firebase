@@ -1,15 +1,27 @@
 import "./Sidebar.scss";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import SidebarChannel from "./SidebarChannel";
 import AddIcon from "@mui/icons-material/Add";
 import MicIcon from "@mui/icons-material/Mic";
 import { useAppSelector } from "../../app/hooks";
 import HeadsetIcon from "@mui/icons-material/Headset";
+import useCollection from "../../hooks/useCollection";
 import SettingsIcon from "@mui/icons-material/Settings";
+import { addDoc, collection } from "firebase/firestore";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 
 const Sidebar = () => {
-  const user = useAppSelector((state) => state.user);
+  const user = useAppSelector((state) => state.user.user);
+  const { documents: channels } = useCollection("channels");
+
+  const addChannel = async () => {
+    let channelName = prompt("new channel");
+    if (channelName) {
+      await addDoc(collection(db, "channels"), {
+        channelName: channelName,
+      });
+    }
+  };
 
   return (
     <aside className="sidebar">
@@ -32,13 +44,20 @@ const Sidebar = () => {
             <ExpandMoreIcon />
             <h4>プログラミングチャンネル</h4>
             <div className="sidebar-channels__content"></div>
-            <AddIcon className="sidebar-channels__icon" />
+            <AddIcon
+              className="sidebar-channels__icon"
+              onClick={() => addChannel()}
+            />
           </div>
 
           <div className="sidebar-channels__list">
-            <SidebarChannel />
-            <SidebarChannel />
-            <SidebarChannel />
+            {channels.map((channel) => (
+              <SidebarChannel
+                id={channel.id}
+                channel={channel}
+                key={channel.id}
+              />
+            ))}
           </div>
 
           <div className="sidebar-channels__footer">
