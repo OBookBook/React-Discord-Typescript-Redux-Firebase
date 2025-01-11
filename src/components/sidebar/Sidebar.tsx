@@ -27,10 +27,10 @@ const Sidebar = () => {
     <aside className="sidebar">
       <div className="sidebar__left">
         <div className="sidebar__icon">
-          <img src="./../../../public/images/vite.svg" alt="server icon" />
+          <img src="/public/images/vite.svg" alt="server icon" />
         </div>
         <div className="sidebar__icon">
-          <img src="./../../../public/images/vite.svg" alt="server icon" />
+          <img src="/public/images/vite.svg" alt="server icon" />
         </div>
       </div>
       <div className="sidebar__right">
