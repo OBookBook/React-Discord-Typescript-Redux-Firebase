@@ -13,7 +13,7 @@ const Login = () => {
   return (
     <div className="login">
       <div className="login__logo">
-        <img src="./../../../public/images/vite.svg" alt="" />
+        <img src="/public/images/vite.svg" alt="" />
       </div>
       <Button onClick={signin}>Login</Button>
     </div>
