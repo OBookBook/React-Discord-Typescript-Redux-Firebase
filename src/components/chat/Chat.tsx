@@ -50,7 +50,6 @@ function Chat() {
         });
       });
       setMessages(results);
-      console.log(results);
     });
   }, [channelId]);
 
